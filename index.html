@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GEOPING</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="scanlines"></div>
+
+    <header>
+        <h1 class="glitch" data-text="GEOPING">GEOPING</h1>
+        <p>INITIATE SPATIAL QUERY // CLICK GRID TO EXTRACT METRICS</p>
+    </header>
+
+    <div id="globe-container"></div>
+
+    <div id="weather-card" class="hidden">
+        <button id="close-btn" aria-label="Close card">[ X ]</button>
+        <div id="card-loader" class="loader">DECRYPTING ATMOSPHERIC MATRIX...<span class="blink">_</span></div>
+        <div id="card-content" class="hidden">
+            <div class="card-header">
+                <span id="weather-icon">☀️</span>
+                <div class="geo-coords">
+                    <h2 id="weather-status">Clear Sky</h2>
+                    <h3 id="location-name">Targeting...</h3>
+                    <p id="lat-lon-display">0.00°N, 0.00°E</p>
+                </div>
+            </div>
+            <div class="main-temp">
+                <span id="temp-display">--</span><span class="unit">°C</span>
+            </div>
+            <div class="weather-grid">
+                <div class="grid-item">
+                    <span class="label">SYS.FEELS_LIKE</span>
+                    <span id="feels-like" class="value">--</span>
+                </div>
+                <div class="grid-item">
+                    <span class="label">WIND.VELOCITY</span>
+                    <span id="wind-speed" class="value">--</span>
+                </div>
+                <div class="grid-item">
+                    <span class="label">HUMIDITY.LVL</span>
+                    <span id="humidity" class="value">--</span>
+                </div>
+                <div class="grid-item">
+                    <span class="label">PRECIP.VOL</span>
+                    <span id="precipitation" class="value">--</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+                "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+            }
+        }
+    </script>
+    <script type="module" src="app.js"></script>
+</body>
+</html>

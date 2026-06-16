@@ -1,0 +1,257 @@
+:root {
+    --bg-color: #050608;
+    --panel-bg: rgba(5, 8, 14, 0.9);
+    --accent-cyan: #00f3ff;
+    --accent-pink: #ff0055;
+    --accent-yellow: #fcee0a;
+    --text-primary: #e0e6ed;
+    --text-secondary: #6e829c;
+    --grid-color: rgba(0, 243, 255, 0.05);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--bg-color);
+    /* High-tech blueprint grid background */
+    background-image: 
+        linear-gradient(var(--grid-color) 1px, transparent 1px),
+        linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
+    background-size: 30px 30px;
+    color: var(--text-primary);
+    font-family: "Courier New", Courier, monospace; /* Terminal font vibe */
+    overflow: hidden;
+    height: 100vh;
+    width: 100vw;
+}
+
+/* CRT Scanlines Overlay */
+.scanlines {
+    position: fixed;
+    top: 0; left: 0; width: 100vw; height: 100vh;
+    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), 
+                linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+    background-size: 100% 3px, 3px 100%;
+    z-index: 999;
+    pointer-events: none;
+}
+
+header {
+    position: absolute;
+    top: 40px;
+    left: 40px;      /* Pins the element to the left edge */
+    transform: none; /* Removes the previous center-alignment math */
+    text-align: left; 
+    z-index: 10;
+    pointer-events: none;
+}
+
+/* Cyberpunk Glitch Text Effect */
+.glitch {
+    font-size: 2rem;
+    font-weight: 900;
+    letter-spacing: 0.4em;
+    margin-bottom: 6px;
+    color: var(--text-primary);
+    position: relative;
+    text-shadow: 0 0 10px var(--accent-cyan);
+}
+
+.glitch::before, .glitch::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: transparent; /* CRITICAL FIX: Allows grid to show through */
+}
+
+.glitch::before {
+    left: 2px;
+    text-shadow: -1px 0 var(--accent-pink);
+    clip: rect(24px, 550px, 90px, 0);
+    animation: glitch-anim 3s infinite linear alternate-reverse;
+}
+
+.glitch::after {
+    left: -2px;
+    text-shadow: -1px 0 var(--accent-yellow);
+    clip: rect(85px, 550px, 140px, 0);
+    animation: glitch-anim 2.5s infinite linear alternate-reverse;
+}
+
+@keyframes glitch-anim {
+    0% { clip: rect(10px, 9999px, 44px, 0); }
+    20% { clip: rect(85px, 9999px, 59px, 0); }
+    40% { clip: rect(14px, 9999px, 29px, 0); }
+    60% { clip: rect(98px, 9999px, 88px, 0); }
+    80% { clip: rect(3px, 9999px, 77px, 0); }
+    100% { clip: rect(53px, 9999px, 12px, 0); }
+}
+
+header p {
+    font-size: 0.85rem;
+    color: var(--accent-yellow);
+    letter-spacing: 0.1em;
+    text-shadow: 0 0 5px rgba(252, 238, 10, 0.5);
+}
+
+#globe-container {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0; left: 0;
+    cursor: crosshair; /* Hacker targeting cursor */
+}
+
+/* Advanced Cyberpunk Card UI */
+#weather-card {
+    position: absolute;
+    width: 340px;
+    background: var(--panel-bg);
+    border-left: 3px solid var(--accent-cyan);
+    border-top: 1px solid var(--accent-cyan);
+    /* The Cyberpunk Angled Cut */
+    clip-path: polygon(0 0, 100% 0, 100% calc(100% - 30px), calc(100% - 30px) 100%, 0 100%);
+    padding: 24px;
+    box-shadow: inset 0 0 20px rgba(0, 243, 255, 0.1);
+    z-index: 100;
+    transform: translate(-50%, -120%);
+    transition: opacity 0.2s ease-out, transform 0.2s ease-out;
+    pointer-events: auto;
+}
+
+#weather-card::after {
+    content: "";
+    position: absolute;
+    bottom: 0; right: 0;
+    width: 30px; height: 3px;
+    background: var(--accent-pink);
+    box-shadow: 0 0 10px var(--accent-pink);
+}
+
+#weather-card.hidden {
+    opacity: 0;
+    pointer-events: none;
+    transform: translate(-50%, -100%) scale(0.95);
+}
+
+#close-btn {
+    position: absolute;
+    top: 14px; right: 16px;
+    background: none;
+    border: none;
+    color: var(--accent-pink);
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    font-family: monospace;
+    transition: all 0.2s;
+}
+
+#close-btn:hover {
+    color: var(--accent-yellow);
+    text-shadow: 0 0 8px var(--accent-yellow);
+}
+
+.loader {
+    font-size: 0.85rem;
+    color: var(--accent-cyan);
+    text-align: center;
+    padding: 30px 0;
+    letter-spacing: 0.1em;
+}
+
+.blink {
+    animation: blinker 1s linear infinite;
+}
+
+@keyframes blinker {
+    50% { opacity: 0; }
+}
+
+.card-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 20px;
+    border-bottom: 1px dashed var(--text-secondary);
+    padding-bottom: 15px;
+}
+
+#weather-icon {
+    font-size: 2.5rem;
+    filter: drop-shadow(0 0 8px var(--accent-cyan));
+}
+
+.geo-coords h2 {
+    font-size: 1.1rem;
+    color: var(--text-primary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+#location-name {
+    font-size: 0.9rem;
+    color: var(--accent-pink);
+    margin-bottom: 4px;
+    text-transform: uppercase;
+    text-shadow: 0 0 5px rgba(255, 0, 85, 0.4);
+}
+
+.geo-coords p {
+    font-size: 0.75rem;
+    color: var(--accent-yellow);
+}
+
+.main-temp {
+    font-size: 4rem;
+    font-weight: bold;
+    line-height: 1;
+    margin-bottom: 20px;
+    color: var(--accent-cyan);
+    text-shadow: 0 0 15px rgba(0, 243, 255, 0.5);
+}
+
+.main-temp .unit {
+    font-size: 1.5rem;
+    color: var(--text-secondary);
+    vertical-align: top;
+}
+
+.weather-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+.grid-item {
+    display: flex;
+    flex-direction: column;
+    background: rgba(0, 243, 255, 0.03);
+    padding: 8px;
+    border-left: 2px solid var(--text-secondary);
+    transition: border-color 0.3s;
+}
+
+.grid-item:hover {
+    border-left-color: var(--accent-yellow);
+    background: rgba(252, 238, 10, 0.05);
+}
+
+.grid-item .label {
+    font-size: 0.65rem;
+    color: var(--text-secondary);
+    letter-spacing: 0.1em;
+    margin-bottom: 4px;
+}
+
+.grid-item .value {
+    font-size: 1rem;
+    color: var(--text-primary);
+}
