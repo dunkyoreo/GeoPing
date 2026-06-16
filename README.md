@@ -1,6 +1,5 @@
-# GeoPing
+# [GeoPing](https://dunkyoreo.github.io/GeoPing/)
 
-## Description
 GeoPing is an interactive geospatial tool and high-performance 3D weather visualizer that abandons traditional flat maps for deep-dive planetary rendering. 
 
 Wrapped in a minimalist cyberpunk web UI, this tactical data dashboard allows users to scan a Three.js globe, drop pinpoint targeting vectors, and decrypt real-time atmospheric metrics from any coordinate on Earth. 
