@@ -75,8 +75,13 @@ function init() {
     controls = new OrbitControls(camera, renderer.domElement);
     controls.enableDamping = true;
     controls.dampingFactor = 0.05;
-    controls.minDistance = 6;
+    controls.minDistance = 5.2; 
     controls.maxDistance = 25;
+    
+    // --- Mobile & Sensitivity Tweaks ---
+    controls.rotateSpeed = 0.4; // Throttles the swipe rotation speed (default is 1.0)
+    controls.zoomSpeed = 0.8;   // Smooths out the pinch-to-zoom slightly
+    controls.enablePan = false; // Locks the globe to the center so it can't slide off-screen
 
     controls.addEventListener('start', () => isDragging = true);
     controls.addEventListener('end', () => isDragging = false);
